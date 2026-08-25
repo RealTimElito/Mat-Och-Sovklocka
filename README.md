@@ -14,7 +14,28 @@ En barnvänlig dagklocka som visar när det är dags att äta, vila och sova. Ru
 - **Frontend:** React, Vite, Tailwind
 - **Backend:** Express, Prisma, PostgreSQL
 
-## Kom igång
+## Kom igång med Docker
+
+Kräver Docker med Compose.
+
+```bash
+# Bara Postgres (tom databas med schemat applicerat) för lokal utveckling
+docker compose up -d db migrate
+
+# Hela appen (Postgres + API + webb via nginx)
+docker compose up --build
+```
+
+Med hela stacken igång: webben på http://localhost:8080, API:t på http://localhost:3001.
+Databasen startar tom — den har bara schemat, inga användare eller events. Skapa ett konto via appens signup.
+
+Sätt gärna `JWT_SECRET` innan du kör något utanför lokal lek:
+
+```bash
+JWT_SECRET=din-hemlighet docker compose up --build
+```
+
+## Kom igång lokalt (utan Docker för app-koden)
 
 ```bash
 # Backend
